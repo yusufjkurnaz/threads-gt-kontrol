@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Threads GT Kontrol - Takipten Çıkanları Bul</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen font-sans flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <div class="max-w-3xl mx-auto px-4 pt-10 pb-12 w-full">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-500 bg-clip-text text-transparent pb-1">
+                Threads GT Kontrol
+            </h1>
+            <p class="text-slate-400 mt-2 text-sm md:text-base">Seni geri takip etmeyenleri saniyeler içinde, %100 güvenle tespit et.</p>
+            
+            <div class="inline-flex items-center gap-2 mt-4 px-3.5 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-emerald-400 text-xs font-medium shadow-sm">
+                <span>🛡️</span> Cihazınızda çalışır. Şifreniz veya verileriniz hiçbir sunucuya gönderilmez.
+            </div>
+        </div>
+
+        <div class="mb-8 mt-6">
+            <p class="text-center text-[11px] font-bold tracking-widest text-slate-500 uppercase mb-3">Geliştiricinin Diğer Projeleri</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-xl mx-auto">
+                <a href="https://jkurnaz.com" target="_blank" rel="noopener" class="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-slate-900/40 hover:bg-slate-900 border border-slate-800/80 hover:border-slate-700 transition group">
+                    <span class="text-base">🌐</span>
+                    <div class="text-left">
+                        <div class="text-xs font-semibold text-slate-300 group-hover:text-indigo-400 transition">jkurnaz.com</div>
+                        <div class="text-[10px] text-slate-500">Kişisel Portföy & Blog</div>
+                    </div>
+                </a>
+                <a href="https://wc26simulator.jkurnaz.com" target="_blank" rel="noopener" class="flex items-center justify-center gap-2.5 p-3 rounded-xl bg-slate-900/40 hover:bg-slate-900 border border-slate-800/80 hover:border-slate-700 transition group">
+                    <span class="text-base">🏆</span>
+                    <div class="text-left">
+                        <div class="text-xs font-semibold text-slate-300 group-hover:text-indigo-400 transition">WC 2026 Simulator</div>
+                        <div class="text-[10px] text-slate-500">Dünya Kupası Simülasyonu</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-slate-900/60 border border-slate-800/80 rounded-2xl p-6 mb-8 shadow-xl">
+            <h2 class="font-bold text-slate-200 mb-4 text-base flex items-center gap-2 border-b border-slate-800 pb-3">
+                <span>📌</span> Adım Adım Veri İndirme Rehberi
+            </h2>
+            
+            <div class="bg-amber-950/50 border border-amber-500/40 p-3.5 rounded-xl text-amber-200 text-xs md:text-sm leading-relaxed mb-5 flex gap-3 items-center">
+                <span class="text-xl select-none">📱</span>
+                <div>
+                    <b class="text-amber-100 block mb-0.5">Telefondan Yapacaklar İçin Çok Önemli İlk Adım:</b>
+                    İşlemlere Threads uygulamasından değil, tarayıcınızdan (Chrome/Safari) threads.net adresine girerek başlayın. Mailinize gelen indirme linkine tıkladığınızda sizi zorla uygulamaya atıyorsa, linkin üzerine <b>basılı tutup "Yeni Sekmede Aç"</b> deyin.
+                </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm text-slate-300 leading-relaxed">
+                <p class="flex gap-2.5">
+                    <span class="font-bold text-indigo-400 select-none">1.</span>
+                    <span>Tarayıcınızdan <b class="text-white">Hesaplar Merkezi > Bilgilerin ve İzinlerin > Bilgilerini dışa aktar</b> yolunu izleyin.</span>
+                </p>
+                <p class="flex gap-2.5">
+                    <span class="font-bold text-indigo-400 select-none">2.</span>
+                    <span><b class="text-white">Dışa aktarım oluştur</b>'a tıklayıp listeden <b class="text-white">Threads</b> hesabınızı seçin.</span>
+                </p>
+                <p class="flex gap-2.5">
+                    <span class="font-bold text-indigo-400 select-none">3.</span>
+                    <span><b class="text-white">Bilgileri özelleştir</b> seçeneğine girip sadece <b class="text-white">Threads hareketleriniz > Threads</b> tikini işaretleyin.</span>
+                </p>
+                <p class="flex gap-2.5 bg-indigo-950/30 p-3 rounded-xl border border-indigo-500/20 text-indigo-200">
+                    <span class="font-bold text-indigo-400 select-none">⚠️</span>
+                    <span><b>Çok Kritik Ayar:</b> Format kesinlikle <b class="text-white underline decoration-indigo-400">JSON</b> olmalıdır. Medya kalitesini <b class="text-white">Düşük</b> seçerseniz dosyanız daha kısa sürede hazır olur.</span>
+                </p>
+                <p class="flex gap-2.5">
+                    <span class="font-bold text-indigo-400 select-none">4.</span>
+                    <span>Tarih aralığını "Tümü" yapıp <b class="text-white">Dışa aktarımı başlat</b> deyin. Dosya hazırlanınca mailinize bildirim gelecektir.</span>
+                </p>
+                <div class="flex gap-2.5 pt-1">
+                    <span class="font-bold text-indigo-400 select-none">5.</span>
+                    <div class="space-y-2">
+                        <span>İndirdiğiniz dosyayı aşağıdaki kutuya bırakın:</span>
+                        <div class="bg-slate-950/80 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 space-y-1.5">
+                            <span class="text-indigo-400 font-bold block">📲 Telefondan Yükleme Rehberi:</span>
+                            <span>• <b>ZIP olarak duruyorsa:</b> Kutuya dokunun → Dosyalar → İndirilenler → direkt <code>.zip</code> dosyasını seçin.</span>
+                            <span class="block">• <b>Klasöre çıkarttıysanız:</b> Kutuya dokunun → Dosyalar → klasöre girin → parmağınızla basılı tutarak hem <code>followers.json</code> hem de <code>following.json</code> dosyasını <b>aynı anda işaretleyip</b> yükleyin.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="dropZone" class="border-2 border-dashed border-slate-700 hover:border-indigo-500 bg-slate-900/30 hover:bg-slate-900/50 transition-all duration-200 rounded-2xl p-10 text-center cursor-pointer relative group">
+            <input type="file" id="fileInput" accept=".zip,.json" multiple class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+            <div class="flex flex-col items-center justify-center pointer-events-none">
+                <div class="w-16 h-16 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 flex items-center justify-center text-3xl mb-4 group-hover:scale-110 group-hover:bg-indigo-600/20 transition-all duration-200">
+                    📂
+                </div>
+                <p class="font-semibold text-slate-200 text-base">Dosyalarınızı buraya seçin veya sürükleyin</p>
+                <p class="text-xs text-slate-500 mt-1.5">Tek parça .ZIP dosyası veya (followers.json + following.json) çoklu seçim</p>
+            </div>
+        </div>
+
+        <div id="loading" class="hidden text-center py-12">
+            <div class="inline-block w-9 h-9 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin mb-3"></div>
+            <p class="text-slate-300 font-medium text-sm">Veriler tarayıcı belleğinde eşleştiriliyor...</p>
+        </div>
+
+        <div id="resultArea" class="hidden mt-8 space-y-6">
+            <div class="grid grid-cols-3 gap-3 text-center">
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400 font-medium">Takip Ettiklerin</div>
+                    <div id="statFollowing" class="text-2xl font-extrabold text-slate-200 mt-1">-</div>
+                </div>
+                <div class="bg-slate-900/80 border border-slate-800 p-4 rounded-xl">
+                    <div class="text-xs text-slate-400 font-medium">Seni Takip Edenler</div>
+                    <div id="statFollowers" class="text-2xl font-extrabold text-slate-200 mt-1">-</div>
+                </div>
+                <div class="bg-rose-950/40 border border-rose-900/60 p-4 rounded-xl">
+                    <div class="text-xs text-rose-300 font-medium">Geri Takip Etmeyen</div>
+                    <div id="statUnfollowers" class="text-2xl font-extrabold text-rose-400 mt-1">-</div>
+                </div>
+            </div>
+
+            <div class="bg-slate-900/90 border border-slate-800 rounded-2xl overflow-hidden shadow-2xl">
+                <div class="p-4 bg-slate-800/60 border-b border-slate-800 flex justify-between items-center">
+                    <h3 class="font-bold text-slate-200 text-sm tracking-wide">TESPİT EDİLEN HESAPLAR</h3>
+                    <button id="copyBtn" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-3.5 py-2 rounded-lg transition shadow active:scale-95">İsimleri Kopyala</button>
+                </div>
+                <div id="unfollowersList" class="divide-y divide-slate-800/60 max-h-[480px] overflow-y-auto p-2"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class="text-center py-6 text-xs text-slate-500 border-t border-slate-900/80 mt-auto">
+        <p><a href="https://jkurnaz.com" target="_blank" class="text-slate-400 hover:text-indigo-400 font-medium underline decoration-slate-700 transition">Yusuf Kurnaz</a> tarafından geliştirilmiştir.</p>
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const loading = document.getElementById('loading');
+        const resultArea = document.getElementById('resultArea');
+
+        fileInput.addEventListener('change', async (e) => {
+            const files = Array.from(e.target.files);
+            if (files.length === 0) return;
+
+            loading.classList.remove('hidden');
+            resultArea.classList.add('hidden');
+
+            let followersRaw = null;
+            let followingRaw = null;
+
+            try {
+                if (files.length === 1 && files[0].name.endsWith('.zip')) {
+                    const zip = await JSZip.loadAsync(files[0]);
+                    for (const [filename, fileData] of Object.entries(zip.files)) {
+                        if (filename.endsWith('followers.json')) followersRaw = JSON.parse(await fileData.async('string'));
+                        if (filename.endsWith('following.json')) followingRaw = JSON.parse(await fileData.async('string'));
+                    }
+                } else {
+                    for (const file of files) {
+                        if (file.name.endsWith('.json')) {
+                            const text = await file.text();
+                            const json = JSON.parse(text);
+                            if (file.name.includes('followers')) followersRaw = json;
+                            if (file.name.includes('following')) followingRaw = json;
+                        }
+                    }
+                }
+
+                if (!followersRaw || !followingRaw) {
+                    alert("Eksik dosya! Lütfen ya tam bir .ZIP dosyası yükleyin, ya da 'followers.json' ve 'following.json' dosyalarının İKİSİNİ BİRDEN seçerek bırakın.");
+                    loading.classList.add('hidden');
+                    return;
+                }
+
+                const getFollowersSet = (jsonObj) => {
+                    const key = Object.keys(jsonObj)[0];
+                    return new Set(jsonObj[key].map(item => item.string_list_data[0].value));
+                };
+
+                const getFollowingList = (jsonObj) => {
+                    const key = Object.keys(jsonObj)[0];
+                    return jsonObj[key].map(item => {
+                        const data = item.string_list_data[0];
+                        return { username: data.value, url: data.href };
+                    });
+                };
+
+                const followersSet = getFollowersSet(followersRaw);
+                const followingList = getFollowingList(followingRaw);
+                const notFollowingBack = followingList.filter(userObj => !followersSet.has(userObj.username));
+
+                document.getElementById('statFollowing').innerText = followingList.length;
+                document.getElementById('statFollowers').innerText = followersSet.size;
+                document.getElementById('statUnfollowers').innerText = notFollowingBack.length;
+
+                const listContainer = document.getElementById('unfollowersList');
+                listContainer.innerHTML = '';
+
+                if (notFollowingBack.length === 0) {
+                    listContainer.innerHTML = `<div class="p-10 text-center text-slate-500 font-medium">Harika! Takip ettiğin herkes seni geri takip ediyor.</div>`;
+                } else {
+                    notFollowingBack.forEach(item => {
+                        const row = document.createElement('div');
+                        row.className = 'flex items-center justify-between p-3 hover:bg-slate-800/50 rounded-xl transition';
+                        row.innerHTML = `
+                            <span class="font-medium text-slate-300 text-sm pl-2">@${item.username}</span>
+                            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="text-xs bg-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 font-medium px-3.5 py-2 rounded-lg border border-slate-700 hover:border-indigo-500 transition shadow-sm">Profili Aç ↗</a>
+                        `;
+                        listContainer.appendChild(row);
+                    });
+                }
+
+                document.getElementById('copyBtn').onclick = () => {
+                    const sadeceIsimler = notFollowingBack.map(u => u.username).join('\n');
+                    navigator.clipboard.writeText(sadeceIsimler);
+                    document.getElementById('copyBtn').innerText = 'Kopyalandı! ✓';
+                    setTimeout(() => document.getElementById('copyBtn').innerText = 'İsimleri Kopyala', 2000);
+                };
+
+                loading.classList.add('hidden');
+                resultArea.classList.remove('hidden');
+
+            } catch (err) {
+                alert("Dosya analiz edilirken bir hata oluştu: " + err.message);
+                loading.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
