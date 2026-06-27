@@ -118,26 +118,6 @@
     </footer>
 
     <script>
-        // AKILLI HİBRİT YÖNLENDİRİCİ
-        window.ac = function(user) {
-            const cleanUser = user.trim();
-            const targetUrl = `https://www.threads.net/@${cleanUser}`;
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-            if (isMobile) {
-                window.location.href = targetUrl;
-            } else {
-                // Görünmez Hayalet Link (Meta Referrer Bypass)
-                const a = document.createElement('a');
-                a.href = targetUrl;
-                a.target = '_blank';
-                a.rel = 'noreferrer noopener';
-                document.body.appendChild(a);
-                a.click();
-                a.remove();
-            }
-        };
-
         const fileInput = document.getElementById('fileInput');
         const loading = document.getElementById('loading');
         const resultArea = document.getElementById('resultArea');
@@ -181,14 +161,18 @@
                     return new Set(jsonObj[key].map(item => item.string_list_data[0].value));
                 };
 
+                // ESKİDEN PC'DE ÇALIŞAN MANTIĞA %100 GERİ DÖNÜŞ (Ham href alınıyor)
                 const getFollowingList = (jsonObj) => {
                     const key = Object.keys(jsonObj)[0];
-                    return jsonObj[key].map(item => item.string_list_data[0].value);
+                    return jsonObj[key].map(item => {
+                        const data = item.string_list_data[0];
+                        return { username: data.value, originalUrl: data.href };
+                    });
                 };
 
                 const followersSet = getFollowersSet(followersRaw);
                 const followingList = getFollowingList(followingRaw);
-                const notFollowingBack = followingList.filter(user => !followersSet.has(user));
+                const notFollowingBack = followingList.filter(userObj => !followersSet.has(userObj.username));
 
                 document.getElementById('statFollowing').innerText = followingList.length;
                 document.getElementById('statFollowers').innerText = followersSet.size;
@@ -197,26 +181,32 @@
                 const listContainer = document.getElementById('unfollowersList');
                 listContainer.innerHTML = '';
 
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
                 if (notFollowingBack.length === 0) {
                     listContainer.innerHTML = `<div class="p-10 text-center text-slate-500 font-medium">Harika! Takip ettiğin herkes seni geri takip ediyor.</div>`;
                 } else {
-                    notFollowingBack.forEach(username => {
-                        const cleanUser = username.trim();
+                    notFollowingBack.forEach(item => {
+                        const cleanUser = item.username.trim();
                         const row = document.createElement('div');
                         row.className = 'flex items-center justify-between p-3 hover:bg-slate-800/50 rounded-xl transition';
                         
+                        // PC İSE: Eskiden çalışan saf ham Meta linki (item.originalUrl) + target="_blank"
+                        // MOBİL İSE: Uygulamayı tetikleyen adres + boş target (aynı sekmede açar)
+                        const finalLink = isMobile ? `https://www.threads.net/@${cleanUser}` : item.originalUrl;
+                        const targetAttr = isMobile ? '' : 'target="_blank" rel="noopener noreferrer"';
+
                         row.innerHTML = `
-                            <span class="font-medium text-slate-300 text-sm pl-2 truncate select-all" title="@${cleanUser}">@${cleanUser}</span>
-                            <button onclick="ac('${cleanUser}')" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-4 py-2 rounded-lg transition shadow active:scale-95 cursor-pointer">
-                                Profili Aç ↗
-                            </button>
+                            <span class="font-medium text-slate-300 text-sm pl-2 truncate" title="@${cleanUser}">@${cleanUser}</span>
+                            <a href="${finalLink}" ${targetAttr} class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-4 py-2 rounded-lg transition shadow active:scale-95 inline-block">Profili Aç ↗</a>
                         `;
                         listContainer.appendChild(row);
                     });
                 }
 
                 document.getElementById('copyBtn').onclick = () => {
-                    navigator.clipboard.writeText(notFollowingBack.join('\n'));
+                    const sadeceIsimler = notFollowingBack.map(u => u.username).join('\n');
+                    navigator.clipboard.writeText(sadeceIsimler);
                     document.getElementById('copyBtn').innerText = 'Kopyalandı! ✓';
                     setTimeout(() => document.getElementById('copyBtn').innerText = 'İsimleri Kopyala', 2000);
                 };
