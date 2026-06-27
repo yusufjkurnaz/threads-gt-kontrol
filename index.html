@@ -118,15 +118,23 @@
     </footer>
 
     <script>
-        // AKILLI MOBİL YÖNLENDİRİCİ (Global Tanım)
+        // AKILLI HİBRİT YÖNLENDİRİCİ
         window.ac = function(user) {
+            const cleanUser = user.trim();
+            const targetUrl = `https://www.threads.net/@${cleanUser}`;
             const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const targetUrl = `https://www.threads.net/@${user}`;
 
             if (isMobile) {
                 window.location.href = targetUrl;
             } else {
-                window.open(targetUrl, '_blank');
+                // Görünmez Hayalet Link (Meta Referrer Bypass)
+                const a = document.createElement('a');
+                a.href = targetUrl;
+                a.target = '_blank';
+                a.rel = 'noreferrer noopener';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
             }
         };
 
