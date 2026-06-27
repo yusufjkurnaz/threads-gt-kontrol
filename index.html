@@ -195,12 +195,21 @@
                 } else {
                     notFollowingBack.forEach(item => {
                         const row = document.createElement('div');
-                        row.className = 'flex items-center justify-between p-3 hover:bg-slate-800/50 rounded-xl transition';
+                        // Kullanıcı adında görünmez boşluk varsa diye temizliyoruz (.trim)
+                        const cleanUser = item.username.trim(); 
                         
-                        // İŞTE SİHİRLİ DEĞİŞİKLİK BURADA: item.url yerine direkt threads.net/@${item.username} kullanıyoruz
+                        row.className = 'flex items-center justify-between p-3 hover:bg-slate-800/50 rounded-xl transition gap-2';
+                        
+                        // İŞTE SİHİRLİ DEĞİŞİKLİK BURADA:
+                        // 1. rel="noopener noreferrer" KİMİLDEN KALDIRILDI (Derin bağlantı için)
+                        // 2. www. KALDIRILDI, direkt threads.net/@kullanici formatına geçildi.
+                        // 3. EMNİYET SÜBABI olarak yanına "Instagram" butonu eklendi!
                         row.innerHTML = `
-                            <span class="font-medium text-slate-300 text-sm pl-2">@${item.username}</span>
-                            <a href="https://www.threads.net/@${item.username}" target="_blank" rel="noopener noreferrer" class="text-xs bg-slate-800 hover:bg-indigo-600 hover:text-white text-slate-300 font-medium px-3.5 py-2 rounded-lg border border-slate-700 hover:border-indigo-500 transition shadow-sm">Profili Aç ↗</a>
+                            <span class="font-medium text-slate-300 text-sm pl-2 truncate" title="@${cleanUser}">@${cleanUser}</span>
+                            <div class="flex items-center gap-2 shrink-0">
+                                <a href="https://threads.net/@${cleanUser}" target="_blank" class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium px-3 py-1.5 rounded-lg border border-slate-700 transition shadow-sm">Threads ↗</a>
+                                <a href="https://www.instagram.com/${cleanUser}" target="_blank" class="text-xs bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-3 py-1.5 rounded-lg transition shadow-sm">Instagram ↗</a>
+                            </div>
                         `;
                         listContainer.appendChild(row);
                     });
